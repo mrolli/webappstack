@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global|
 
   # Webserver
   global.vm.define "webserver" do |config|
-    config.vm.host_name = "webserver.mywebapp.com"
+    config.vm.hostname = "webserver.mywebapp.com"
     config.vm.network "private_network", ip: "192.168.33.10", netmask: "255.255.255.0"
     #config.vm.provider "virtualbox" do |vb|
       #vb.name = "webserver.mywebapp.com"
@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |global|
 
   # Database Server
   global.vm.define "dbserver" do |config|
-    config.vm.host_name = "dbserver.mywebapp.com"
+    config.vm.hostname = "dbserver.mywebapp.com"
     config.vm.network "private_network", ip: "192.168.33.20", netmask: "255.255.255.0"
     #config.vm.provider "virtualbox" do |vb|
     #  vb.name = "dbserver.mywebapp.com"
