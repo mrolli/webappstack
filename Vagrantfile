@@ -20,5 +20,6 @@ Vagrant.configure("2") do |global|
     config.vm.hostname = "dbserver.mywebapp.com"
     config.vm.network "private_network", ip: "192.168.33.20", netmask: "255.255.255.0"
     config.vm.provision :hosts, :sync_hosts => true
+    config.vm.provision "shell", inline: "/vagrant/provision_dbserver"
   end
 end

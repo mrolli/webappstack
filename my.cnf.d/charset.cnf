@@ -1,0 +1,16 @@
+# https://scottlinux.com/2017/03/04/mysql-mariadb-set-character-set-and-collation-to-utf8/
+# https://mariadb.com/kb/en/library/setting-character-sets-and-collations/
+# https://medium.com/@adamhooper/in-mysql-never-use-utf8-use-utf8mb4-11761243e434
+# https://stackoverflow.com/questions/47566730/force-mariadb-clients-to-use-utf8mb4
+
+[client]
+default-character-set = utf8mb4
+
+[mysql]
+default-character-set = utf8mb4
+
+[mysqld]
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+character-set-client-handshake = FALSE
+init-connect = 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci'
