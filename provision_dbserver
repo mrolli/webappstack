@@ -54,6 +54,9 @@ then
   echo "- Setting password for user root"
   mysql -e "UPDATE mysql.user SET Password=PASSWORD('root12345') WHERE User='root'"
 
+  echo "- Adding an unprivileged user without permissions"
+  mysql -e "GRANT USAGE ON *.* TO 'demouser'@'%' IDENTIFIED BY 'demouser1'"
+
   # Reload privileges tables
   echo "- Flushing privileges"
   mysql -e "FLUSH PRIVILEGES"
