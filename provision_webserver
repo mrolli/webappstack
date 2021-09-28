@@ -14,7 +14,7 @@ rpm -q remi-release &>/dev/null || dnf -y install https://rpms.remirepo.net/ente
 # First install the Aapche webserver
 rpm -q httpd  &>/dev/null || dnf -y install httpd
 
-if [ ! command -v php &>/dev/null]
+if ! command -v php &>/dev/null
 then
   # Install PHP 8.0 from its respective module
   # Documentation about the new concept of modularity in Enterprise Linxes can be
