@@ -12,7 +12,10 @@ Vagrant.configure("2") do |global|
   global.vm.define "webserver" do |config|
     config.vm.hostname = "webserver.mywebapp.com"
     config.vm.network "private_network", ip: "192.168.33.10", netmask: "255.255.255.0"
+    config.vm.network "forwarded_port", guest: 80, host: 8080
+    config.vm.network "forwarded_port", guest: 443, host: 8443
     config.vm.provision :hosts, :sync_hosts => true
+    config.vm.provision "shell", inline: "/vagrant/provision_webserver"
   end
 
   # Database Server
