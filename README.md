@@ -1,4 +1,4 @@
-What is this?
+# What is this all about?
 
 This repository is featuring a Vagrantfile and some deployment scripts to setup a LAMP stack on your
 local machine using Vagrant and VirtualBox. Its sole purpose is to show our apprentices how one can
