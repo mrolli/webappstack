@@ -78,6 +78,9 @@ then
   echo "- Flush privileges"
   $mysql_cmd -e "FLUSH PRIVILEGES"
 
+  echo "- Creating empty database wordpress"
+  $mysql_cmd -e "CREATE DATABASE wordpress"
+
   echo "Provisioning an unprivileged user done"
 else
   echo "Provisioned unprivileged user already"
