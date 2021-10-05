@@ -39,29 +39,46 @@ if mysql -e "SELECT 1" &>/dev/null
 then
   echo "Hardening the database server..."
 
-  echo "- Dropping test database"
+  echo "- Drop test database"
   mysql -e "DROP DATABASE IF EXISTS test"
 
-  echo "Removing privileges on test database"
+  echo "- Remove privileges on test database"
   mysql -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'"
 
-  echo "- Removing anonymous users"
+  echo "- Remove anonymous users"
   mysql -e "DELETE FROM mysql.user WHERE User=''"
 
-  echo "- Removing remote root"
+  echo "- Remove remote root"
   mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')"
 
-  echo "- Setting password for user root"
+  echo "- Set password for user root to root12345"
   mysql -e "UPDATE mysql.user SET Password=PASSWORD('root12345') WHERE User='root'"
 
-  echo "- Adding an unprivileged user without permissions"
-  mysql -e "GRANT USAGE ON *.* TO 'demouser'@'%' IDENTIFIED BY 'demouser1'"
-
   # Reload privileges tables
-  echo "- Flushing privileges"
+  echo "- Flush privileges"
   mysql -e "FLUSH PRIVILEGES"
 
   echo "Hardening done"
 else
   echo "Hardening already done probably"
+fi
+
+if ! mysql --user=demouser --password=demouser1 -e "SELECT 1" &>/dev/null
+then
+  echo "Provisioning an unprivileged user..."
+  mysql_cmd="mysql --user=root --password=root12345"
+
+  echo "- Add user demouser with password demouser1 without any permissions anything"
+  $mysql_cmd -e "GRANT USAGE ON *.* TO 'demouser'@'%' IDENTIFIED BY 'demouser1'"
+
+  echo "- Grant all privileges to the above demouser on the database wordpress"
+  $mysql_cmd -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'demouser'"
+
+  # Reload privileges tables
+  echo "- Flush privileges"
+  $mysql_cmd -e "FLUSH PRIVILEGES"
+
+  echo "Provisioning an unprivileged user done"
+else
+  echo "Provisioned unprivileged user already"
 fi
