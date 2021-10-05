@@ -33,8 +33,8 @@ then
     php-mysqlnd
 fi
 
-# Place an index.php to Apache's DocumentRoot to print out phpinfo()
-phpinfo_file=/var/www/html/index.php
+# Place an PHP script to Apache's DocumentRoot to print out phpinfo()
+phpinfo_file=/var/www/html/phpinfo.php
 [ ! -f "${phpinfo_file}" ] && echo "<?php phpinfo();" > "${phpinfo_file}"
 
 # Start Apache

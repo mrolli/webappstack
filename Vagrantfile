@@ -16,6 +16,7 @@ Vagrant.configure("2") do |global|
     config.vm.network "forwarded_port", guest: 443, host: 8443
     config.vm.provision :hosts, :sync_hosts => true
     config.vm.provision "shell", path: "provision_webserver.sh"
+    config.vm.provision "shell", path: "install_wordpress.sh", args: "192.168.33.10"
   end
 
   # Database Server
