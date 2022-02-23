@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |global|
-  global.vm.box = "bento/rockylinux-8"
+  global.vm.box = "geerlingguy/rockylinux8"
   global.vm.box_check_update = false
 
   # Turn off vbguest if installed as bento has guest additions installed
