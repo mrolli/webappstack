@@ -68,7 +68,7 @@ then
   echo "Provisioning an unprivileged user..."
   mysql_cmd="mysql --user=root --password=root12345"
 
-  echo "- Add user demouser with password demouser1 without any permissions anything"
+  echo "- Add user demouser with password demouser1 without any permissions on anything"
   $mysql_cmd -e "GRANT USAGE ON *.* TO 'demouser'@'%' IDENTIFIED BY 'demouser1'"
 
   echo "- Grant all privileges to the above demouser on the database wordpress"

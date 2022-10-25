@@ -26,5 +26,6 @@ Vagrant.configure("2") do |global|
     config.vm.network "forwarded_port", guest: 3306, host: 8306
     config.vm.provision :hosts, :sync_hosts => true
     config.vm.provision "shell", path: "provision_dbserver.sh"
+    config.vm.provision "shell", path: "install_world.sh"
   end
 end
